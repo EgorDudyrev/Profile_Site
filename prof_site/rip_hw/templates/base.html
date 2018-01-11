@@ -22,7 +22,7 @@
     <!--<link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">-->
 
     <!-- Custom styles for this template -->
-    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <link href="{% static 'css/rip_hw_styles.css' %}" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -59,19 +59,6 @@
                       <!--<li><a href="{% url 'self_hotel_list' %}">Мои отели</a></li>-->
                   </ul>
               </li>
-            <!--
-            <li class="dropdown">
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              {{ user.username }}
-                <span class="caret"></span>
-              </button>
-              <li class="dropdown">
-                  <ul><a class="dropdown-item" href="{% url 'trav_settings' %}">Настройки</a></ul>
-                  <ul><a class="dropdown-item" href="{% url 'logout' %}">Выйти</a></ul>
-                  <div class="dropdown-divider"></div>
-                  <ul><a class="dropdown-item" href="{% url 'hotel_registration' %}">Регистриция отеля</a></ul>
-              </li>
-            </li>-->
             {% else %}
               <a role="button" class="btn btn-default" href="{% url 'authorization' %}">Войти</a>
               <a role="button" class="btn btn-default" href="{% url 'registration' %}">Зарегестрироваться</a>
@@ -100,6 +87,6 @@
     <script src="{% static 'js/bootstrap.min.js'%}"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="{% static 'js/ie10-viewport-bug-workaround.js'%}"></script>
-    <script src="{% static 'js/scripts.js' %}"></script>
+    <script src="{% static 'js/rip_hw_scripts.js' %}"></script>
   </body>
 </html>
