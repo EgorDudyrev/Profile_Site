@@ -1,3 +1,3 @@
 # Profile_Site
 
-A repository for my business card website
+A repository containing all the project I've done to load on personal website.
