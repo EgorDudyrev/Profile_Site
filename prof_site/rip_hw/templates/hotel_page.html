@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% block title %}Bookng: Отель{% endblock %}
+
 {% block main_block %}
 {% csrf_token %}
 <h2 id="hotel_name">{{ hotel.name }}</h2>
