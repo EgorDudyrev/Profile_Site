@@ -1,0 +1,38 @@
+{% extends "ml_diploma_base.html" %}
+
+{% block main_block %}
+<h1>Демо-презентация модели</h1>
+<div class="main-panel-elem">
+    <h2>Введите пример отзыва на телефон:</h2>
+    <form action="{% url 'ml_index' %}" method=post>
+        {% csrf_token %}
+        <textarea class="form-control" name=text rows=5 cols=40>{{ text }}</textarea>
+        <input class="btn btn-primary" type="submit" value="Оценить">
+    </form>
+
+    {% if prediction_message %}
+        <h2>Предсказание тональности отзыва:</h2>
+        {% if is_pos %}
+        <h4 class="bg-success">{{ prediction_message }}</h4>
+        {% else %}
+        <h4 class="bg-danger">{{ prediction_message }}</h4>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block side_block %}
+<h1>Информация</h1>
+<div class="main-panel-elem">
+    <h4>Описание</h4>
+    Используется векторизация TfIdf и классификация линейным методом опорных вектором (LinearSVC). При векторизации
+    применяются n-граммы из 1-7 символов.
+    <h4>Качество работы алгоритма (точность):</h4>
+    <ul>
+        <li>Среднее по кросс-валидации: 0.71</li>
+        <li>Качество на тестовой выборке: 0.83</li>
+        <li>Результат в тесте kaggle: 0.92</li>
+    </ul>
+</div>
+{% endblock %}
+

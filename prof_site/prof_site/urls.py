@@ -19,6 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    url(r'^ml_diploma/', include('yand_ml_diploma.urls')),
     url(r'^rip_hw/', include('rip_hw.urls')),
     url(r'^admin/', admin.site.urls),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
