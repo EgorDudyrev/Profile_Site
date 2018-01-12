@@ -120,7 +120,8 @@ USE_L10N = True
 USE_TZ = True
 
 
-MY_APPS = ['rip_hw']
+MY_APPS = ['rip_hw',
+           'yand_ml_diploma']
 INSTALLED_APPS += MY_APPS
 
 # Static files (CSS, JavaScript, Images)
