@@ -75,8 +75,14 @@ WSGI_APPLICATION = 'prof_site.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'profile_site_db',
+        'USER': 'edudyrev',
+        'PASSWORD': 'edudpass',
+        'HOST': 'localhost',
+        'PORT': 3306,
+        'OPTIONS': {'charset':'utf8'},
+        'TEST_CHARSET': 'utf8',
     }
 }
 
@@ -114,7 +120,15 @@ USE_L10N = True
 USE_TZ = True
 
 
+MY_APPS = ['rip_hw']
+INSTALLED_APPS += MY_APPS
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATICFILES_DIRS = [ os.path.join(BASE_DIR, '{}'.format(app))  for app in MY_APPS ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
