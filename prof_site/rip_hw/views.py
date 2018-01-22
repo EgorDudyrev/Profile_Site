@@ -70,7 +70,8 @@ class HotelListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(HotelListView, self).get_context_data(**kwargs)
-        context['traveler'] = models.Traveler.objects.get(user=self.request.user)
+        if self.request.user.is_authenticated:
+            context['traveler'] = models.Traveler.objects.get(user=self.request.user)
         #context['booking_form'] = BookingForm()
         return context
 
@@ -82,12 +83,12 @@ class HotelListView(ListView):
                     q.description = q.description[:50]+'...'
         return qs
 
-    @method_decorator(login_required(login_url='authorization'))
+    #@method_decorator(login_required(login_url='authorization'))
     def dispatch(self, request, *args, **kwargs):
         return super(HotelListView, self).dispatch(request, *args, **kwargs)
 
 
-@login_required(login_url='authorization')
+#@login_required(login_url='authorization')
 def hotel_page(request, hotel):
     context = {}
     try:
@@ -99,7 +100,8 @@ def hotel_page(request, hotel):
     except:
         context['hotel'] = None
 
-    context['traveler'] = models.Traveler.objects.get(user=request.user)
+    if request.user.is_authenticated:
+        context['traveler'] = models.Traveler.objects.get(user=request.user)
     return render(request, 'hotel_page.html', context)
 
 
@@ -162,11 +164,8 @@ def registration(request):
         form = RegistrationForm()
 
     context = {'form':form}
-    try:
-        if request.user.is_authenticated():
+    if request.user.is_authenticated:
             context['traveler'] = models.Traveler.objects.get(user=request.user)
-    except:
-        pass
     return render(request, 'registration.html',context)
 
 
@@ -239,7 +238,7 @@ def trav_settings(request):
 
 def index(request):
     if not request.user.is_authenticated:
-        return HttpResponseRedirect('authorization')
+        return HttpResponseRedirect('hotel_list/1')
     else:
         return HttpResponseRedirect('book_list/1')
 

@@ -22,10 +22,13 @@ function calc_price(){
 }
 
 function load_last_bookings(){
+    if($("#traveler_name").text().length==0){
+        return;
+    }
     console.log('loading last_bookings');
     $.ajax({
             type: "GET",
-            url: '/hw/ajax/last_bookings/',
+            url: '/rip_hw/ajax/last_bookings/',
             data: {
                 'hotel_name': $("#hotel_name").text(),
                 'user_email': $("#traveler_email").text(),
@@ -54,6 +57,11 @@ $(document).ready(function(){
     console.log('Document is ready');
 
     if(document.URL.match('hw/hotels')){
+        if($("#traveler_name").text().length==0) {
+            console.log("disabling");
+            $(".btn_modal_booking").attr("disabled", "disabled"); //Это для бутстрапа
+            $(".btn_modal_booking").prop("disabled",True); //Это для js, чтобы кнопка не нажималась
+        }
         load_last_bookings();
         $("#id_start_date_month").change(calc_price);
         $("#id_start_date_day").change(calc_price);
@@ -81,7 +89,7 @@ $(document).ready(function(){
         console.log(csrf_value)
         $.ajax({
             type: "POST",
-            url: '/hw/ajax/book/',
+            url: '/rip_hw/ajax/book/',
             data: {
                 'hotel_name': $("#id_hotel").val(),
                 'user_email': $("#traveler_email").text(),
